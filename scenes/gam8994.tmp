@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://m1gn7juqnlsr"]
+
+[ext_resource type="PackedScene" uid="uid://otu81i5a6dd0" path="res://scenes/botón_principal.tscn" id="1_bfsgr"]
+[ext_resource type="Script" path="res://scripts/Game_Manager.gd" id="1_q4yks"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Game_Manager" type="Node" parent="."]
+script = ExtResource("1_q4yks")
+
+[node name="Score_Label" type="Label" parent="Game_Manager"]
+offset_left = 333.0
+offset_top = 154.0
+offset_right = 373.0
+offset_bottom = 177.0
+text = "score:"
+
+[node name="Botón_Principal" parent="." instance=ExtResource("1_bfsgr")]
+offset_left = 270.0
+offset_top = 194.0
+offset_right = 433.0
+offset_bottom = 264.0
