@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccs0xo6aef4hk"]
+
+[ext_resource type="Script" path="res://scripts/Clicker_main_mechanic_and_updates.gd" id="1_sy2yw"]
+
+[node name="ClickerMain" type="Node2D"]
+script = ExtResource("1_sy2yw")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 412.0
+offset_top = 162.0
+offset_right = 529.0
+offset_bottom = 185.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "points: <value>"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(250, 80)
+offset_left = 341.0
+offset_top = 245.0
+offset_right = 591.0
+offset_bottom = 325.0
+text = "press"
+
+[node name="Button2" type="Button" parent="."]
+custom_minimum_size = Vector2(250, 80)
+offset_left = 710.0
+offset_top = 80.0
+offset_right = 960.0
+offset_bottom = 160.0
+text = "update"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
