@@ -1,0 +1,220 @@
+[gd_scene load_steps=2 format=3 uid="uid://2elnd5wqibdy"]
+
+[ext_resource type="Script" path="res://scripts/script_general.gd" id="1_qvlri"]
+
+[node name="Intento_De_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_qvlri")
+
+[node name="BoxContainerUpdates" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -270.0
+offset_top = 23.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainerUpdate1" type="VBoxContainer" parent="BoxContainerUpdates"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BoxContainerUpdates/VBoxContainerUpdate1"]
+layout_mode = 2
+text = "Mejora Automatica"
+horizontal_alignment = 1
+
+[node name="Boton_Mejora1" type="Button" parent="BoxContainerUpdates/VBoxContainerUpdate1"]
+custom_minimum_size = Vector2(250, 80)
+layout_mode = 2
+text = "mejora 1"
+
+[node name="HSeparator" type="HSeparator" parent="BoxContainerUpdates"]
+layout_mode = 2
+
+[node name="VBoxContainerUpdate2" type="VBoxContainer" parent="BoxContainerUpdates"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BoxContainerUpdates/VBoxContainerUpdate2"]
+layout_mode = 2
+text = "Mejora Automatica"
+horizontal_alignment = 1
+
+[node name="Boton_Mejora2" type="Button" parent="BoxContainerUpdates/VBoxContainerUpdate2"]
+custom_minimum_size = Vector2(250, 80)
+layout_mode = 2
+text = "mejora 2"
+
+[node name="HSeparator2" type="HSeparator" parent="BoxContainerUpdates"]
+layout_mode = 2
+
+[node name="VBoxContainerUpdate3" type="VBoxContainer" parent="BoxContainerUpdates"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BoxContainerUpdates/VBoxContainerUpdate3"]
+layout_mode = 2
+text = "Mejora Automatica"
+horizontal_alignment = 1
+
+[node name="Boton_Mejora3" type="Button" parent="BoxContainerUpdates/VBoxContainerUpdate3"]
+custom_minimum_size = Vector2(250, 80)
+layout_mode = 2
+text = "mejora 3"
+
+[node name="HSeparator3" type="HSeparator" parent="BoxContainerUpdates"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BoxContainerUpdates"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Boton_mej_Secundaria1" type="Button" parent="BoxContainerUpdates/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "1"
+
+[node name="VSeparator" type="VSeparator" parent="."]
+layout_mode = 0
+offset_left = 858.0
+offset_top = 20.0
+offset_right = 862.0
+offset_bottom = 628.0
+
+[node name="ZonaPrincipalJugable" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -292.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="BotonPrincipalClicker" type="Button" parent="ZonaPrincipalJugable"]
+custom_minimum_size = Vector2(250, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -40.0
+offset_right = 125.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CLICK! CLICK! CLICK!"
+
+[node name="LabelPrincipalDePuntos" type="Label" parent="ZonaPrincipalJugable"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -420.0
+offset_top = 26.0
+offset_right = 420.0
+offset_bottom = 68.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "POINTS: <value>"
+horizontal_alignment = 1
+
+[node name="LabelPrincipalPuntosDecimales" type="Label" parent="ZonaPrincipalJugable"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -83.0
+offset_top = 65.0
+offset_right = 83.0
+offset_bottom = 88.0
+grow_horizontal = 2
+text = "por segundo: <value>"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -66.0
+offset_right = -312.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label_Logros_Padre" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Logros_label" type="Label" parent="HBoxContainer/Label_Logros_Padre"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Logros_label2" type="Label" parent="HBoxContainer/Label_Logros_Padre"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Logros_label3" type="Label" parent="HBoxContainer/Label_Logros_Padre"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -21.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="BoxContainerUpdates/VBoxContainerUpdate1/Boton_Mejora1" to="." method="_on_boton_mejora_1_pressed"]
+[connection signal="pressed" from="BoxContainerUpdates/VBoxContainerUpdate2/Boton_Mejora2" to="." method="_on_boton_mejora_2_pressed"]
+[connection signal="pressed" from="BoxContainerUpdates/VBoxContainerUpdate3/Boton_Mejora3" to="." method="_on_boton_mejora_3_pressed"]
+[connection signal="pressed" from="BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1" to="." method="_on_boton_mej_secundaria_1_pressed"]
+[connection signal="pressed" from="ZonaPrincipalJugable/BotonPrincipalClicker" to="." method="_on_boton_principal_clicker_pressed"]
