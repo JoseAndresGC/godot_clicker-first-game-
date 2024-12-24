@@ -36,7 +36,7 @@ horizontal_alignment = 1
 [node name="Boton_Mejora1" type="Button" parent="BoxContainerUpdates/VBoxContainerUpdate1"]
 custom_minimum_size = Vector2(250, 80)
 layout_mode = 2
-text = "mejora 1"
+text = "MEJORA 1 COSTO: <value>"
 
 [node name="HSeparator" type="HSeparator" parent="BoxContainerUpdates"]
 layout_mode = 2
@@ -52,7 +52,7 @@ horizontal_alignment = 1
 [node name="Boton_Mejora2" type="Button" parent="BoxContainerUpdates/VBoxContainerUpdate2"]
 custom_minimum_size = Vector2(250, 80)
 layout_mode = 2
-text = "mejora 2"
+text = "MEJORA 2 COSTO: <value>"
 
 [node name="HSeparator2" type="HSeparator" parent="BoxContainerUpdates"]
 layout_mode = 2
@@ -68,7 +68,7 @@ horizontal_alignment = 1
 [node name="Boton_Mejora3" type="Button" parent="BoxContainerUpdates/VBoxContainerUpdate3"]
 custom_minimum_size = Vector2(250, 80)
 layout_mode = 2
-text = "mejora 3"
+text = "MEJORA 3 COSTO: <value>"
 
 [node name="HSeparator3" type="HSeparator" parent="BoxContainerUpdates"]
 layout_mode = 2
@@ -83,6 +83,20 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "1"
+
+[node name="Panel" type="Panel" parent="BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+offset_left = -254.0
+offset_top = -33.0
+offset_right = -24.0
+offset_bottom = 48.0
+
+[node name="Ventana_Emergente_mej_Sec1" type="Label" parent="BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel"]
+layout_mode = 1
+offset_right = 219.0
+offset_bottom = 23.0
+text = "El raton es el doble de eficaz"
 
 [node name="VSeparator" type="VSeparator" parent="."]
 layout_mode = 0

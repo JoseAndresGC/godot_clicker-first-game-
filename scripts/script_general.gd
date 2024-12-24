@@ -1,17 +1,17 @@
 extends Control
 
 ## variables/diccionarios
-
-var score = 0
-var score_secundario = 0
+var score = 0 ## score principal
+var score_secundario = 0 ## indica los puntos por segundo
 var scoreAutomaticoPorSec = 0
 var regulador ## por si hay que bajarle el tiempo de actualizacion del frame a delta
 var multiplicador = 1 ## variable para la primera mejora secundaria >MejoraDelClick1<
 
+
 var mejoras = {
 	'Mejora1' : {'costo': 15, 'incremento': 0.1},
-	'Mejora2' : {'costo': 150, 'incremento': 10},
-	'Mejora3' : {'costo': 500, 'incremento': 20},
+	'Mejora2' : {'costo': 100, 'incremento': 1},
+	'Mejora3' : {'costo': 1000, 'incremento': 8},
 }
 
 var logros = {
@@ -29,6 +29,9 @@ var mejDeLasMejoras = { ## copiando las mejoras secundarias del cookie clicker, 
 func _ready() -> void:
 	$ZonaPrincipalJugable/LabelPrincipalDePuntos.text = 'PUNTOS: ' + str(score)
 	$ZonaPrincipalJugable/LabelPrincipalPuntosDecimales.text = 'por segundo: ' + str(score_secundario)
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel/Ventana_Emergente_mej_Sec1.visible = false
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1.connect("mouse_entered", Callable(self, "ventanaEmergenteMej_sec1_mouseIn"))
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1.connect("mouse_exited", Callable(self, "ventanaEmergenteMej_sec1_mouseOut"))
 	costo_en_boton_act()
 	check_logros1()
 	check_logros2()
@@ -70,10 +73,13 @@ func comprar_mejora(nombre_mejora: String):
 	else:
 		print('No tenei plata papu') ## se imprime en la consola, deberia de mostrarse en el juego en prox actualizacion 
 
-func costo_en_boton_act():
+func costo_en_boton_act(): ## permite ver en tiempo real el costo actual de las mejoras
 	$BoxContainerUpdates/VBoxContainerUpdate1/Boton_Mejora1.text = 'MEJORA 1 COSTO: ' + str(mejoras['Mejora1']['costo'])
 	$BoxContainerUpdates/VBoxContainerUpdate2/Boton_Mejora2.text = 'MEJORA 2 COSTO: ' + str(mejoras['Mejora2']['costo'])
 	$BoxContainerUpdates/VBoxContainerUpdate3/Boton_Mejora3.text = 'MEJORA 3 COSTO: ' + str(mejoras['Mejora3']['costo'])
+
+func costo_en_boton_act_mej_secundaria(): ## permite ver en tiempo real el costo actual de las mejoras secundarias
+	pass
 
 func _on_boton_mej_secundaria_1_pressed() -> void: 
 	compra_mejoras_secundaria('MejoraDelClick1')
@@ -87,7 +93,7 @@ func compra_mejoras_secundaria(nombre_mej_mejora: String): ## en desarrollo
 	else:
 		print('no tenei plata para la mejora secundaria papuardo')
 
-func check_logros1(): 
+func check_logros1():
 	if score >= 1 and not logros['Primer Click!']:
 		logros['Primer Click!'] = true
 		$HBoxContainer/Label_Logros_Padre/Logros_label.text += '\nPrimer Click conseguido!'
@@ -116,3 +122,9 @@ func actualizarEstadoDeLogro2():
 func actualizarEstadoDeLogro3():
 	if score > 1000 and logros['1000 Clicks!'] == true:
 		$HBoxContainer/Label_Logros_Padre/Logros_label3.visible = false
+
+func ventanaEmergenteMej_sec1_mouseIn():
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel/Ventana_Emergente_mej_Sec1.visible = true	
+
+func ventanaEmergenteMej_sec1_mouseOut():
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel/Ventana_Emergente_mej_Sec1.visible = false
