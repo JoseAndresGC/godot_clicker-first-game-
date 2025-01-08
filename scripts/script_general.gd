@@ -1,12 +1,12 @@
 extends Control
 
 ## variables/diccionarios
-var score = 0 ## score principal
+
+var score = 100 ## score principal
 var score_secundario = 0 ## indica los puntos por segundo
 var scoreAutomaticoPorSec = 0
 var regulador ## por si hay que bajarle el tiempo de actualizacion del frame a delta
-var multiplicador = 1 ## variable para la primera mejora secundaria >MejoraDelClick1<
-
+var multiplicador = 1
 
 var mejoras = {
 	'Mejora1' : {'costo': 15, 'incremento': 0.1},
@@ -21,7 +21,15 @@ var logros = {
 }
 
 var mejDeLasMejoras = { ## copiando las mejoras secundarias del cookie clicker, pero cutre (????
-	'MejoraDelClick1' : {'costo_mej_click': 100}, ## hacer que esta primera mejora multiplique * 2 el click y la Mejora1 <EN DESARROLLO>
+	'MejoraDelClick1' : {'costo_mej_click': 100, 'multiplicador': multiplicador * 2},
+	'MejoraDelClick2' : {'costo_mej_click': 500, 'multiplicador': 2},
+}
+
+@onready var ventana_emergente_mej_sec_1: Label = $BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel_De_Pantalla_Emergente_meg_Sec1/Ventana_Emergente_mej_Sec1
+
+var ventanasEmergentesTextos = {
+	'MejSecundaria1' : ventana_emergente_mej_sec_1,
+	'MejSecundaria2' : 'manolo',
 }
 
 ## resto del codigo.....
@@ -29,9 +37,11 @@ var mejDeLasMejoras = { ## copiando las mejoras secundarias del cookie clicker, 
 func _ready() -> void:
 	$ZonaPrincipalJugable/LabelPrincipalDePuntos.text = 'PUNTOS: ' + str(score)
 	$ZonaPrincipalJugable/LabelPrincipalPuntosDecimales.text = 'por segundo: ' + str(score_secundario)
-	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel/Ventana_Emergente_mej_Sec1.visible = false
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel_De_Pantalla_Emergente_meg_Sec1.visible = false
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel_De_Pantalla_Emergente_meg_Sec1/Ventana_Emergente_mej_Sec1.visible = false
 	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1.connect("mouse_entered", Callable(self, "ventanaEmergenteMej_sec1_mouseIn"))
 	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1.connect("mouse_exited", Callable(self, "ventanaEmergenteMej_sec1_mouseOut"))
+	costo_en_label_mej_sec()
 	costo_en_boton_act()
 	check_logros1()
 	check_logros2()
@@ -48,14 +58,14 @@ func _process(delta: float) -> void:
 	check_logros3()
 
 func _on_boton_principal_clicker_pressed() -> void:
-	score += multiplicador 
+	score += multiplicador
 	$ZonaPrincipalJugable/LabelPrincipalDePuntos.text = 'PUNTOS: ' + str(score)
 
 func _on_boton_mejora_1_pressed() -> void:
 	comprar_mejora('Mejora1') ##funcion para comprar las mejoras
 
 func _on_boton_mejora_2_pressed() -> void:
-	comprar_mejora('Mejora2')
+	comprar_mejora('Mejora2') 
 
 func _on_boton_mejora_3_pressed() -> void:
 	comprar_mejora('Mejora3')
@@ -78,19 +88,25 @@ func costo_en_boton_act(): ## permite ver en tiempo real el costo actual de las 
 	$BoxContainerUpdates/VBoxContainerUpdate2/Boton_Mejora2.text = 'MEJORA 2 COSTO: ' + str(mejoras['Mejora2']['costo'])
 	$BoxContainerUpdates/VBoxContainerUpdate3/Boton_Mejora3.text = 'MEJORA 3 COSTO: ' + str(mejoras['Mejora3']['costo'])
 
-func costo_en_boton_act_mej_secundaria(): ## permite ver en tiempo real el costo actual de las mejoras secundarias
-	pass
+func costo_en_label_mej_sec(): ## permite ver en tiempo real el costo actual de las mejoras secundarias
+	ventana_emergente_mej_sec_1.text = 'El raton es el doble de eficaz
+	
+	Costo: ' + str(mejDeLasMejoras['MejoraDelClick1']['costo_mej_click'])
 
 func _on_boton_mej_secundaria_1_pressed() -> void: 
 	compra_mejoras_secundaria('MejoraDelClick1')
+
+func _on_boton_mej_secundaria_2_pressed() -> void:
+	compra_mejoras_secundaria('MejoraDelClick2')
 
 func compra_mejoras_secundaria(nombre_mej_mejora: String): ## en desarrollo
 	var mej_mejora = mejDeLasMejoras[nombre_mej_mejora]
 	if score >= mej_mejora['costo_mej_click']:
 		score -= mej_mejora['costo_mej_click']
-		multiplicador += 1 ## Puede ser multiplicador, sumador, etc
+		multiplicador *= mej_mejora['multiplicador']
 		print('mejora secundaria comprada')
-	else:
+	elif score < mej_mejora['costo_mej_click']: ## si no hay suficiente score, los botones se deben desactivar <EN DESARROLLO>
+		$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1.disabled = true
 		print('no tenei plata para la mejora secundaria papuardo')
 
 func check_logros1():
@@ -124,7 +140,9 @@ func actualizarEstadoDeLogro3():
 		$HBoxContainer/Label_Logros_Padre/Logros_label3.visible = false
 
 func ventanaEmergenteMej_sec1_mouseIn():
-	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel/Ventana_Emergente_mej_Sec1.visible = true	
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel_De_Pantalla_Emergente_meg_Sec1.visible = true
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel_De_Pantalla_Emergente_meg_Sec1/Ventana_Emergente_mej_Sec1.visible = true
 
 func ventanaEmergenteMej_sec1_mouseOut():
-	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel/Ventana_Emergente_mej_Sec1.visible = false
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel_De_Pantalla_Emergente_meg_Sec1.visible = false
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel_De_Pantalla_Emergente_meg_Sec1/Ventana_Emergente_mej_Sec1.visible = false
