@@ -105,6 +105,22 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "2"
 
+[node name="Panel_De_Pantalla_Emergente_meg_Sec2" type="Panel" parent="BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria2"]
+layout_mode = 0
+offset_left = -308.0
+offset_top = -3.0
+offset_right = -78.0
+offset_bottom = 78.0
+
+[node name="Ventana_Emergente_mej_Sec2" type="Label" parent="BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria2/Panel_De_Pantalla_Emergente_meg_Sec2"]
+layout_mode = 1
+offset_right = 249.0
+offset_bottom = 101.0
+text = "La mejora 2 es el doble de eficaz
+
+Costo: <value>"
+autowrap_mode = 2
+
 [node name="VSeparator" type="VSeparator" parent="."]
 layout_mode = 0
 offset_left = 858.0

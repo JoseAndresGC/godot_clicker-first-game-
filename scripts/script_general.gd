@@ -2,7 +2,7 @@ extends Control
 
 ## variables/diccionarios
 
-var score = 100 ## score principal
+var score = 0 ## score principal
 var score_secundario = 0 ## indica los puntos por segundo
 var scoreAutomaticoPorSec = 0
 var regulador ## por si hay que bajarle el tiempo de actualizacion del frame a delta
@@ -22,14 +22,16 @@ var logros = {
 
 var mejDeLasMejoras = { ## copiando las mejoras secundarias del cookie clicker, pero cutre (????
 	'MejoraDelClick1' : {'costo_mej_click': 100, 'multiplicador': multiplicador * 2},
-	'MejoraDelClick2' : {'costo_mej_click': 500, 'multiplicador': 2},
+	'MejoraDelClick2' : {'costo_mej_click': 500, 'multiplicador': multiplicador * 2},
+	'Mejora3' : {}, ## sin nombre o efecto aún <EN DESARROLLO>
 }
 
 @onready var ventana_emergente_mej_sec_1: Label = $BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel_De_Pantalla_Emergente_meg_Sec1/Ventana_Emergente_mej_Sec1
+@onready var ventana_emergente_mej_sec_2: Label = $BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria2/Panel_De_Pantalla_Emergente_meg_Sec2/Ventana_Emergente_mej_Sec2
 
 var ventanasEmergentesTextos = {
 	'MejSecundaria1' : ventana_emergente_mej_sec_1,
-	'MejSecundaria2' : 'manolo',
+	'MejSecundaria2' : ventana_emergente_mej_sec_2,
 }
 
 ## resto del codigo.....
@@ -37,10 +39,16 @@ var ventanasEmergentesTextos = {
 func _ready() -> void:
 	$ZonaPrincipalJugable/LabelPrincipalDePuntos.text = 'PUNTOS: ' + str(score)
 	$ZonaPrincipalJugable/LabelPrincipalPuntosDecimales.text = 'por segundo: ' + str(score_secundario)
-	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel_De_Pantalla_Emergente_meg_Sec1.visible = false
+	##para que funcione mirar la info de la mejora 1
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel_De_Pantalla_Emergente_meg_Sec1.visible = false 
 	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel_De_Pantalla_Emergente_meg_Sec1/Ventana_Emergente_mej_Sec1.visible = false
 	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1.connect("mouse_entered", Callable(self, "ventanaEmergenteMej_sec1_mouseIn"))
 	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1.connect("mouse_exited", Callable(self, "ventanaEmergenteMej_sec1_mouseOut"))
+	##para que funcione mirar la info de la mejora 2
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria2/Panel_De_Pantalla_Emergente_meg_Sec2.visible = false
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria2/Panel_De_Pantalla_Emergente_meg_Sec2/Ventana_Emergente_mej_Sec2.visible = false
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria2.connect("mouse_entered", Callable(self, "ventanaEmergenteMej_sec2_mouseIn"))
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria2.connect("mouse_exited", Callable(self, "ventanaEmergenteMej_sec2_mouseOut"))
 	costo_en_label_mej_sec()
 	costo_en_boton_act()
 	check_logros1()
@@ -89,9 +97,14 @@ func costo_en_boton_act(): ## permite ver en tiempo real el costo actual de las 
 	$BoxContainerUpdates/VBoxContainerUpdate3/Boton_Mejora3.text = 'MEJORA 3 COSTO: ' + str(mejoras['Mejora3']['costo'])
 
 func costo_en_label_mej_sec(): ## permite ver en tiempo real el costo actual de las mejoras secundarias
+	## info mejora secundaria 1
 	ventana_emergente_mej_sec_1.text = 'El raton es el doble de eficaz
 	
 	Costo: ' + str(mejDeLasMejoras['MejoraDelClick1']['costo_mej_click'])
+	## info mejora secundaria 2
+	ventana_emergente_mej_sec_2.text = 'El raton es el doble de eficaz
+	
+	Costo: ' + str(mejDeLasMejoras['MejoraDelClick2']['costo_mej_click'])
 
 func _on_boton_mej_secundaria_1_pressed() -> void: 
 	compra_mejoras_secundaria('MejoraDelClick1')
@@ -140,9 +153,21 @@ func actualizarEstadoDeLogro3():
 		$HBoxContainer/Label_Logros_Padre/Logros_label3.visible = false
 
 func ventanaEmergenteMej_sec1_mouseIn():
+	## primera mejora
 	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel_De_Pantalla_Emergente_meg_Sec1.visible = true
 	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel_De_Pantalla_Emergente_meg_Sec1/Ventana_Emergente_mej_Sec1.visible = true
 
 func ventanaEmergenteMej_sec1_mouseOut():
+	## primera mejora
 	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel_De_Pantalla_Emergente_meg_Sec1.visible = false
-	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel_De_Pantalla_Emergente_meg_Sec1/Ventana_Emergente_mej_Sec1.visible = false
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1/Panel_De_Pantalla_Emergente_meg_Sec1.visible = false
+
+func ventanaEmergenteMej_sec2_mouseIn():
+	## segunda mejora
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria2/Panel_De_Pantalla_Emergente_meg_Sec2.visible = true
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria2/Panel_De_Pantalla_Emergente_meg_Sec2/Ventana_Emergente_mej_Sec2.visible = true
+
+func ventanaEmergenteMej_sec2_mouseOut():
+	## segunda mejora
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria2/Panel_De_Pantalla_Emergente_meg_Sec2.visible = false
+	$BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria2/Panel_De_Pantalla_Emergente_meg_Sec2.visible = false
