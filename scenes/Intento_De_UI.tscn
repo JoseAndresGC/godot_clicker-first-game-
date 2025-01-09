@@ -116,10 +116,32 @@ offset_bottom = 78.0
 layout_mode = 1
 offset_right = 249.0
 offset_bottom = 101.0
-text = "La mejora 2 es el doble de eficaz
+text = "El raton es el doble de eficaz
 
 Costo: <value>"
 autowrap_mode = 2
+
+[node name="Boton_mej_Secundaria3" type="Button" parent="BoxContainerUpdates/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 0
+text = "3"
+
+[node name="Panel_De_Pantalla_Emergente_meg_Sec3" type="Panel" parent="BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria3"]
+layout_mode = 0
+offset_left = -362.0
+offset_top = -3.0
+offset_right = -132.0
+offset_bottom = 102.0
+
+[node name="Ventana_Emergente_mej_Sec3" type="Label" parent="BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria3/Panel_De_Pantalla_Emergente_meg_Sec3"]
+layout_mode = 0
+offset_right = 230.0
+offset_bottom = 101.0
+text = "La mejora 2 es el doble de eficaz
+
+Costo: <value>"
+autowrap_mode = 3
 
 [node name="VSeparator" type="VSeparator" parent="."]
 layout_mode = 0
@@ -255,4 +277,5 @@ vertical_alignment = 1
 [connection signal="pressed" from="BoxContainerUpdates/VBoxContainerUpdate3/Boton_Mejora3" to="." method="_on_boton_mejora_3_pressed"]
 [connection signal="pressed" from="BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria1" to="." method="_on_boton_mej_secundaria_1_pressed"]
 [connection signal="pressed" from="BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria2" to="." method="_on_boton_mej_secundaria_2_pressed"]
+[connection signal="pressed" from="BoxContainerUpdates/HBoxContainer/Boton_mej_Secundaria3" to="." method="_on_boton_mej_secundaria_3_pressed"]
 [connection signal="pressed" from="ZonaPrincipalJugable/BotonPrincipalClicker" to="." method="_on_boton_principal_clicker_pressed"]
